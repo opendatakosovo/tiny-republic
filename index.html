@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="sha1.js"></script>
+        <script>
+            $( document ).ready(function(){
+
+                // List of all countries smaller than Kosovo.
+                // If you tried to cheat by looking at the page source:
+                //      Tough luck, it's all HASHED!
+                //      If you want to cheat, you will have to at least try harder.
+                var answers = [];
+                answers = [
+                    'ba811cc44ca80cdeabbb54977dca23da4fa35f60',
+                    'c8bbef7def40e50600b6d8fb90568bbc28930bb7',
+                    '2de36011119b07ffffebbea0ba2241195b098f6f',
+                    '1ccc5920e229816f0034a38ff04597deef28ad93',
+                    'd70689602e5f6b9260a0abc8a71c865a6331c1af',
+                    '31b35fd9f865cee275994c1d6e45fc82d076b39e',
+                    '38b73b9aec07756a352847bb543b2bdcfc84624e',
+                    'd574c4a39a63d5492c405f3c4fee62c78dd48e72',
+                    '1a4f41cc8cc0b32160247e20bf0566c57a86b142',
+                    'a426d8c525dc58ca691e8825b891acd6bb6a79fc',
+                    '8bf85d743952c20c3b310b4742dc81795b7f57c7',
+                    '57e52d2c4bf78087590fda0e68724d9e2d4619cd',
+                    'b6d85f52d9227045dade5b8b47d5ab1ec5c704cf',
+                    '82ad7760f0473e747c61d49753a92793b6cecd9e',
+                    'b599de2309e31a21e41394d1614051bb4be8e2ba',
+                    '0335107296fbd613f6bba63cc7942b1ce8db4ec7',
+                    'c39198df01641640129e764bfd25d8af24508a1a',
+                    'afe2b1c1fb3aa4594c983c0812890e4290ae8a2b',
+                    '53a3a1c210482b2ce7cf041f1df842b42eb8d181',
+                    '684cdada7836bfdd8a9c3100c75a7d6b8bc56013',
+                    'eb3d343661e96d8f4a3a417a3e3572532250b6fa',
+                    'f55abda0118d8a7e4481875f8877b70ead76a340',
+                    '74d401b766bc5473c921555ebba4f86563dc80f9',
+                    'b2c5e228f9b44a16b81e5d1001a86915a1a1ccb1',
+                    '42f1c2216790bf18a6f6e5e9406a1d168f82c8cc',
+                    'ca1496b3b37ad063a999a234013c15a075672ca7',
+                    '44d2c67cf5b372d0319312a6b6d232babc692e1c',
+                    '83f2e7d0ceda2cc92a12e21ba8a9ab7e574366e2',
+                    'cafc48394ea8e1a0c5a84837889ebbf3a19e67a5',
+                    'ffae2894f32f05f934ce3f64176937a3966c2177',
+                    '912232cacfe6a3582ba1d68faa9c2847f2f71bc0',
+                    '78ffbb1f11ab70b0bfb4ddad8131924e0df62b09',
+                    '362728d1f1ff951a433ce9eb4ce7a689156f8c85',
+                    'cda108a6c438da9c949b495c48692ad86515015b'
+                ]
+
+                function isSmallerThanKosovo(country){
+                    var countryHash = Sha1.hash(country);
+
+                    var index = $.inArray(countryHash, answers);
+
+                    if(index > -1){
+                        $( "#results" ).append( "<strong>" + $('#country-input').val() + "</strong><br>" );
+
+                        answers[index] = undefined;
+                        $('#country-input').val('')
+                    }
+                }
+
+                $('#country-input').on('input',function(e){
+                    var country = $('#country-input').val().toLowerCase();
+                    isSmallerThanKosovo(country);
+                });
+
+            });
+
+            
+        </script>
+    </head>
+    <body>
+        <h1>
+            Kosovo: The Tiny Republic
+        </h1>
+        <h2>
+            Which Countries Are <em>Smaller</em> than Kosovo?
+        </h2>
+
+        <div>
+            <input type="text" id="country-input"></input>
+        </div>
+
+        <br>
+        <div id="results"/>
+        </div>
+    </body>
+</html>
